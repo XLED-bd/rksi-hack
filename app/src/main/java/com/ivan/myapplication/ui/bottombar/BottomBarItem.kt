@@ -19,7 +19,7 @@ sealed class BottomNavItem(
         icon = Icons.Default.Home
     )
     object ListInvestments : BottomNavItem(
-        route = Screen.TiketsPage.route,
+        route = Screen.ListInvestmentsPage.route,
         title = "Билеты",
         icon = Icons.Default.ShoppingCart
     )

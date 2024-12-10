@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ivan.myapplication.ui.bottombar.BottomNavigationBar
 import com.ivan.myapplication.ui.mainpage.MainScreen
@@ -21,14 +23,32 @@ fun NavigationApp(authViewModel: AuthViewModel) {
 
     val viewModel: MainViewModel = hiltViewModel()
 
-    Scaffold(modifier = Modifier.fillMaxSize(),
-        topBar = {  },
-        bottomBar = {  BottomNavigationBar(navController, viewModel) }
+    NavHost(
+        navController= navController,
+        startDestination = Screen.MainPage.route
+    ) {
+        composable(Screen.MainPage.route){
+            Scaffold(modifier = Modifier.fillMaxSize(),
+                topBar = {  },
+                bottomBar = {  BottomNavigationBar(navController, viewModel) }
+            ) { innerPadding ->
+                MainScreen(Modifier.padding(innerPadding),
+                    onLogout = { authViewModel.logout() })
+            }
+        }
 
-    ) { innerPadding ->
-        MainScreen(Modifier.padding(innerPadding),
-            onLogout = { authViewModel.logout() })
+        composable(Screen.ListInvestmentsPage.route){
+            Scaffold(modifier = Modifier.fillMaxSize(),
+                topBar = {  },
+                bottomBar = {  BottomNavigationBar(navController, viewModel) }
+            ) { innerPadding ->
+                MainScreen(Modifier.padding(innerPadding),
+                    onLogout = { authViewModel.logout() })
+            }
+        }
     }
+
+
 
 }
 
