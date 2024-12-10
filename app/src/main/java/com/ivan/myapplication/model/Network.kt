@@ -8,7 +8,7 @@ data class Stock(
     val id: String,
     val symbol: String,
     val name: String,
-    val lastPrice: Double,
+    val last_price: Double,
     val currency: String
 )
 

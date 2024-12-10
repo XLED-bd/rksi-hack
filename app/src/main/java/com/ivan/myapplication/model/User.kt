@@ -1,5 +1,7 @@
 package com.ivan.myapplication.model
 
+import kotlinx.coroutines.flow.MutableStateFlow
+
 data class User(
     val id: String,
     val email: String,

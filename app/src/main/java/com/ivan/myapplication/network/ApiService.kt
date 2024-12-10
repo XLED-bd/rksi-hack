@@ -1,7 +1,9 @@
 package com.ivan.myapplication.network
 
+import android.media.session.MediaSession.Token
 import com.ivan.myapplication.model.AuthResponse
 import com.ivan.myapplication.model.Stock
+import com.ivan.myapplication.model.User
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -16,5 +18,9 @@ interface ApiService {
     suspend fun login(@Body credentials: Map<String, String>): AuthResponse
 
     @GET("api/stocks")
-    suspend fun getStocks(@Header("Authorization") token: String): List<Stock>
+    suspend fun getStocks(): List<Stock>
+
+    @GET("api/users/me")
+    suspend fun getUser(@Header("Authorization") token: String): User
+
 }

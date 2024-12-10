@@ -21,14 +21,22 @@ fun AuthNavigationApp(
 ) {
     val uiState by authViewModel.uiState.collectAsState()
 
-    val startDestination = "main" //if (uiState.isAuthenticated) "main" else "login"
+    var startDestination = "login"
+
+    try {
+        authViewModel.checkAuthentication()
+        startDestination = if (uiState.isAuthenticated) "main" else "login"
+    } catch (_: Exception) { }
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = "login") {
             LoginScreen(
                 onLoginSuccess = {
                     navController.navigate("main") {
-                        popUpTo("login") { inclusive = true }
+                        launchSingleTop = true
+                        popUpTo(Screen.MainPage.route) {
+                            saveState = true
+                        }
                     }
                 },
                 onNavigateToRegister = {
@@ -42,7 +50,10 @@ fun AuthNavigationApp(
             RegisterScreen(
                 onRegisterSuccess = {
                     navController.navigate("main") {
-                        popUpTo("register") { inclusive = true }
+                        launchSingleTop = true
+                        popUpTo(Screen.MainPage.route) {
+                            saveState = true
+                        }
                     }
                 },
                 onNavigateToLogin = {
