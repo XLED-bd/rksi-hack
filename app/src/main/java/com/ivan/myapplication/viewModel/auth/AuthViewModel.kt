@@ -3,6 +3,7 @@ package com.ivan.myapplication.viewModel.auth
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ivan.myapplication.model.AuthUIState
 import com.ivan.myapplication.network.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,17 +13,9 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-data class AuthUIState(
-    val isLoading: Boolean = false,
-    val isAuthenticated: Boolean = false,
-    val error: String? = null
-)
-
-@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val apiService: ApiService,
-    private val sharedPreferences: SharedPreferences
-) : ViewModel() {
+    private val sharedPreferences: SharedPreferences) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AuthUIState())
     val uiState: StateFlow<AuthUIState> = _uiState

@@ -11,3 +11,9 @@ data class Stock(
     val lastPrice: Double,
     val currency: String
 )
+
+data class AuthUIState(
+    val isLoading: Boolean = false,
+    val isAuthenticated: Boolean = false,
+    val error: String? = null
+)

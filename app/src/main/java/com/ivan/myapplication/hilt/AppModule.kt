@@ -6,6 +6,7 @@ import com.ivan.myapplication.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,7 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(context: Context): SharedPreferences {
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
         return context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
     }
 

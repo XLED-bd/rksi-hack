@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.ivan.myapplication"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ivan.myapplication"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,8 +71,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("com.google.dagger:hilt-android:2.51.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+}
+
+kapt {
+    correctErrorTypes = true
 }
