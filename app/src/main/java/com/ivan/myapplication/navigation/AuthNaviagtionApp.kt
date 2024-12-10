@@ -2,14 +2,14 @@ package com.ivan.myapplication.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.ivan.myapplication.ui.auth.LoginScreen
 import com.ivan.myapplication.ui.auth.RegisterScreen
-import com.ivan.myapplication.ui.mainpage.MainScreen
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
 
 
@@ -17,11 +17,14 @@ import com.ivan.myapplication.viewModel.auth.AuthViewModel
 @Composable
 fun AuthNavigationApp(
     navController: NavHostController,
-    startDestination: String = "login"
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
+    val uiState by authViewModel.uiState.collectAsState()
+
+    val startDestination = "main" //if (uiState.isAuthenticated) "main" else "login"
+
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = "login") {
-            val authViewModel: AuthViewModel = hiltViewModel()
             LoginScreen(
                 onLoginSuccess = {
                     navController.navigate("main") {
@@ -36,7 +39,6 @@ fun AuthNavigationApp(
         }
 
         composable(route = "register") {
-            val authViewModel: AuthViewModel = hiltViewModel()
             RegisterScreen(
                 onRegisterSuccess = {
                     navController.navigate("main") {
@@ -51,7 +53,7 @@ fun AuthNavigationApp(
         }
 
         composable(route = "main") {
-            MainScreen()
+            NavigationApp(authViewModel)
         }
     }
 }

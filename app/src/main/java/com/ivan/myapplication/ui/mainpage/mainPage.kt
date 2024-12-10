@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun MainScreen() {
+fun MainScreen(onLogout: () -> Unit) {
     Column {
         Text("Welcome to the main screen!")
     }

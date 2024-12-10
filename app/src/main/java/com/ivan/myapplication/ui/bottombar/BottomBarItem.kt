@@ -8,23 +8,23 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.ivan.myapplication.navigation.Screen
 
-sealed class BottomBarItem(
+sealed class BottomNavItem(
     val route: String,
     val title: String,
     val icon: ImageVector
 ) {
-    object Home : BottomBarItem(
+    object Home : BottomNavItem(
         route = Screen.MainPage.route,
         title = "Главная",
         icon = Icons.Default.Home
     )
-    object Tikets : BottomBarItem(
+    object ListInvestments : BottomNavItem(
         route = Screen.TiketsPage.route,
         title = "Билеты",
         icon = Icons.Default.ShoppingCart
     )
 
-    //object Setting : BottomBarItem(
+    //object Setting : BottomNavItem(
     //    route = Screen.SettingPage.route,
     //    title = "Настройки",
     //    icon = Icons.Default.Settings

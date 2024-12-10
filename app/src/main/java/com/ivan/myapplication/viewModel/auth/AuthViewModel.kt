@@ -58,7 +58,11 @@ class AuthViewModel @Inject constructor(
 
     fun checkAuthentication() {
         val token = getToken()
-        _uiState.value = AuthUIState(isAuthenticated = token != null)
+        if (!token.isNullOrEmpty()) {
+            _uiState.value = AuthUIState(isAuthenticated = true)
+        } else {
+            _uiState.value = AuthUIState(isAuthenticated = false)
+        }
     }
 
     private fun saveToken(token: String) {

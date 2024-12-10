@@ -1,4 +1,4 @@
-package com.ivan.bus.ui.bottombar
+package com.ivan.myapplication.ui.bottombar
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -9,18 +9,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.ivan.myapplication.viewModel.MainViewModel
 
-/*
+
 @Composable
 fun BottomNavigationBar(navController: NavController, viewModel: MainViewModel) {
 
     val items = listOf(
-        BottomBarItem.Home,
-        BottomBarItem.Tikets,
-        BottomBarItem.Setting,
-        )
-
-
+        BottomNavItem.Home,
+        BottomNavItem.ListInvestments,
+    )
     val selectedItem by viewModel.selectedItem.collectAsState()
 
     NavigationBar {
@@ -42,4 +40,4 @@ fun BottomNavigationBar(navController: NavController, viewModel: MainViewModel) 
             )
         }
     }
-}*/
+}
