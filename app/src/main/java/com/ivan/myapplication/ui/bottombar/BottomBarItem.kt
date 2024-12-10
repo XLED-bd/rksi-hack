@@ -2,6 +2,7 @@ package com.ivan.myapplication.ui.bottombar
 
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -24,9 +25,9 @@ sealed class BottomNavItem(
         icon = Icons.Default.ShoppingCart
     )
 
-    //object Setting : BottomNavItem(
-    //    route = Screen.SettingPage.route,
-    //    title = "Настройки",
-    //    icon = Icons.Default.Settings
-    //)
+    object Profile : BottomNavItem(
+        route = Screen.ProfilePage.route,
+        title = "Профиль",
+        icon = Icons.Default.AccountCircle
+    )
 }

@@ -18,6 +18,7 @@ fun BottomNavigationBar(navController: NavController, viewModel: MainViewModel) 
     val items = listOf(
         BottomNavItem.Home,
         BottomNavItem.ListInvestments,
+        BottomNavItem.Profile
     )
     val selectedItem by viewModel.selectedItem.collectAsState()
 

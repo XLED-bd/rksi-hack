@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ivan.myapplication.ui.bottombar.BottomNavigationBar
 import com.ivan.myapplication.ui.listinvestments.ListInvestments
 import com.ivan.myapplication.ui.mainpage.MainScreen
+import com.ivan.myapplication.ui.profile.ProfilePage
 import com.ivan.myapplication.viewModel.MainViewModel
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
 
@@ -46,9 +47,15 @@ fun NavigationApp(authViewModel: AuthViewModel) {
                 ListInvestments(Modifier.padding(innerPadding))
             }
         }
+
+        composable(Screen.ProfilePage.route){
+            Scaffold(modifier = Modifier.fillMaxSize(),
+                topBar = {  },
+                bottomBar = {  BottomNavigationBar(navController, viewModel) }
+            ) { innerPadding ->
+                ProfilePage(Modifier.padding(innerPadding))
+            }
+        }
     }
-
-
-
 }
 
