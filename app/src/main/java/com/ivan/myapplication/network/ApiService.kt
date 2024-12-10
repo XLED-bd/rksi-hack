@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -19,6 +20,9 @@ interface ApiService {
 
     @GET("api/stocks")
     suspend fun getStocks(): List<Stock>
+
+    @GET("api/stocks/{id}")
+    suspend fun getStock(@Path("id") postId: String): Stock
 
     @GET("api/users/me")
     suspend fun getUser(@Header("Authorization") token: String): User

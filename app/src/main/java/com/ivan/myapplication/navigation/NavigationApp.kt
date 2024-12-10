@@ -16,6 +16,7 @@ import com.ivan.myapplication.ui.listinvestments.ListInvestments
 import com.ivan.myapplication.ui.mainpage.MainScreen
 import com.ivan.myapplication.ui.profile.ProfilePage
 import com.ivan.myapplication.ui.stock.StockPage
+import com.ivan.myapplication.ui.topbar.Topbar
 import com.ivan.myapplication.viewModel.MainViewModel
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
 
@@ -32,7 +33,7 @@ fun NavigationApp(authViewModel: AuthViewModel) {
     ) {
         composable(Screen.MainPage.route){
             Scaffold(modifier = Modifier.fillMaxSize(),
-                topBar = {  },
+                topBar = { Topbar("Главная") },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
                 MainScreen(Modifier.padding(innerPadding), viewModel,
@@ -42,7 +43,7 @@ fun NavigationApp(authViewModel: AuthViewModel) {
 
         composable(Screen.ListInvestmentsPage.route){
             Scaffold(modifier = Modifier.fillMaxSize(),
-                topBar = {  },
+                topBar = { Topbar("Все акции") },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
                 ListInvestments(Modifier.padding(innerPadding), viewModel, onClickStock = {
@@ -54,16 +55,18 @@ fun NavigationApp(authViewModel: AuthViewModel) {
         composable("stock/{id}",
             arguments = listOf(navArgument("id") { type = NavType.StringType})){ id ->
             Scaffold(modifier = Modifier.fillMaxSize(),
-                topBar = {  },
+                topBar = { Topbar("Акция") },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
-                StockPage(Modifier.padding(innerPadding), viewModel, id.arguments!!.getString("id"))
+                StockPage(Modifier.padding(innerPadding),
+                    viewModel,
+                    id.arguments!!.getString("id"))
             }
         }
 
         composable(Screen.ProfilePage.route){
             Scaffold(modifier = Modifier.fillMaxSize(),
-                topBar = {  },
+                topBar = { Topbar("Профиль") },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
                 ProfilePage(Modifier.padding(innerPadding))

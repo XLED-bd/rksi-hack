@@ -28,6 +28,9 @@ class MainViewModel @Inject constructor(
     private val _stocks = MutableStateFlow<List<Stock>>(emptyList())
     val stocks: StateFlow<List<Stock>> = _stocks.asStateFlow()
 
+    private val _stock = MutableStateFlow<Stock>(Stock("-1", "-1", "-1", 0.0, "-1"))
+    val stock: StateFlow<Stock> = _stock.asStateFlow()
+
     private val _user = MutableStateFlow<User>(User("-1", "-1", "01-01-1970"))
     val user: StateFlow<User> = _user.asStateFlow()
 
@@ -39,6 +42,13 @@ class MainViewModel @Inject constructor(
 
     fun onItemSelected(item: BottomNavItem) {
         _selectedItem.value = item
+    }
+
+    fun getStock(id: String) {
+        viewModelScope.launch {
+            Log.e("?", apiService.getStock(id).toString())
+            _stock.value = apiService.getStock(id)
+        }
     }
 
     fun getStocks() {

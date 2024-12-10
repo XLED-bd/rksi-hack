@@ -1,9 +1,13 @@
 package com.ivan.myapplication.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,12 +25,7 @@ fun AuthNavigationApp(
 ) {
     val uiState by authViewModel.uiState.collectAsState()
 
-    var startDestination = "login"
-
-    try {
-        authViewModel.checkAuthentication()
-        startDestination = if (uiState.isAuthenticated) "main" else "login"
-    } catch (_: Exception) { }
+    var startDestination by remember { mutableStateOf("loading") }
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = "login") {
@@ -65,6 +64,15 @@ fun AuthNavigationApp(
 
         composable(route = "main") {
             NavigationApp(authViewModel)
+        }
+
+        composable(route = "loading") {
+            Text("Loading...")
+
+            try {
+                authViewModel.checkAuthentication()
+                startDestination = if (uiState.isAuthenticated) "main" else "login"
+            } catch (_: Exception) { startDestination = "login" }
         }
     }
 }
