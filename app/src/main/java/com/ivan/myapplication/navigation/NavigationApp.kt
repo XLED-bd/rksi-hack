@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.ivan.myapplication.ui.bottombar.BottomNavigationBar
+import com.ivan.myapplication.ui.mainpage.MainScreen
 import com.ivan.myapplication.viewModel.MainViewModel
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
 
@@ -25,9 +26,8 @@ fun NavigationApp(authViewModel: AuthViewModel) {
         bottomBar = {  BottomNavigationBar(navController, viewModel) }
 
     ) { innerPadding ->
-        Box(Modifier.padding(innerPadding)){
-            Text("Work?")
-        }
+        MainScreen(Modifier.padding(innerPadding),
+            onLogout = { authViewModel.logout() })
     }
 
 }
