@@ -12,6 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
 
 @Composable
@@ -48,4 +50,15 @@ fun RegisterScreen(
             uiState.error != null -> Text("Error: ${uiState.error}")
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RegisterScreenPreview() {
+    val authViewModel: AuthViewModel = hiltViewModel()
+    RegisterScreen(
+        onRegisterSuccess = { },
+        onNavigateToLogin = { },
+        authViewModel = authViewModel
+    )
 }
