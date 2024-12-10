@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ivan.myapplication.ui.bottombar.BottomNavigationBar
+import com.ivan.myapplication.ui.listinvestments.ListInvestments
 import com.ivan.myapplication.ui.mainpage.MainScreen
 import com.ivan.myapplication.viewModel.MainViewModel
 import com.ivan.myapplication.viewModel.auth.AuthViewModel
@@ -42,8 +43,7 @@ fun NavigationApp(authViewModel: AuthViewModel) {
                 topBar = {  },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
-                MainScreen(Modifier.padding(innerPadding),
-                    onLogout = { authViewModel.logout() })
+                ListInvestments(Modifier.padding(innerPadding))
             }
         }
     }
