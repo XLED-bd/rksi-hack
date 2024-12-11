@@ -14,7 +14,9 @@ import androidx.navigation.navArgument
 import com.ivan.myapplication.ui.bottombar.BottomNavigationBar
 import com.ivan.myapplication.ui.listinvestments.ListInvestments
 import com.ivan.myapplication.ui.mainpage.MainScreen
+import com.ivan.myapplication.ui.profile.Portfolio.Portfolio
 import com.ivan.myapplication.ui.profile.ProfilePage
+import com.ivan.myapplication.ui.profile.history.History
 import com.ivan.myapplication.ui.stock.StockPage
 import com.ivan.myapplication.ui.topbar.Topbar
 import com.ivan.myapplication.viewModel.MainViewModel
@@ -69,7 +71,30 @@ fun NavigationApp(authViewModel: AuthViewModel) {
                 topBar = { Topbar("Профиль") },
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
-                ProfilePage(Modifier.padding(innerPadding))
+                ProfilePage(Modifier.padding(innerPadding), onClickHistory = {
+                    navController.navigate(Screen.HistoryPage.route)
+                },
+                    onClickPortfolio = {
+                        navController.navigate(Screen.PortfolioPage.route)
+                    })
+            }
+        }
+
+        composable(Screen.HistoryPage.route){
+            Scaffold(modifier = Modifier.fillMaxSize(),
+                topBar = { Topbar("История") },
+                bottomBar = {  BottomNavigationBar(navController, viewModel) }
+            ) { innerPadding ->
+                History(Modifier.padding(innerPadding), viewModel)
+            }
+        }
+
+        composable(Screen.PortfolioPage.route){
+            Scaffold(modifier = Modifier.fillMaxSize(),
+                topBar = { Topbar("Портфель") },
+                bottomBar = {  BottomNavigationBar(navController, viewModel) }
+            ) { innerPadding ->
+                Portfolio(Modifier.padding(innerPadding), viewModel)
             }
         }
     }

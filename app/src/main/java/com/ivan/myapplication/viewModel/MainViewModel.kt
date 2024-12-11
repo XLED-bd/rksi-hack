@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ivan.myapplication.model.Portfolio
 import com.ivan.myapplication.model.Stock
+import com.ivan.myapplication.model.StockHistory
 import com.ivan.myapplication.model.User
 import com.ivan.myapplication.network.ApiService
 import com.ivan.myapplication.ui.bottombar.BottomNavItem
@@ -33,6 +35,12 @@ class MainViewModel @Inject constructor(
 
     private val _user = MutableStateFlow<User>(User("-1", "-1", "01-01-1970"))
     val user: StateFlow<User> = _user.asStateFlow()
+
+    private val _history = MutableStateFlow<List<StockHistory>>(emptyList())
+    val history: StateFlow<List<StockHistory>> = _history.asStateFlow()
+
+    private val _portfolios = MutableStateFlow<List<Portfolio>>(emptyList())
+    val portfolios: StateFlow<List<Portfolio>> = _portfolios.asStateFlow()
 
 
     companion object {
@@ -67,6 +75,18 @@ class MainViewModel @Inject constructor(
 
     private fun getToken(): String {
         return if (sharedPreferences.getString(TOKEN_KEY, null) == null) "null" else sharedPreferences.getString(TOKEN_KEY, "null")!!
+    }
+
+    fun getHistory() {
+        viewModelScope.launch {
+            _history.value = apiService.getHistory("Bearer " + getToken())
+        }
+    }
+
+    fun getPortfolios() {
+        viewModelScope.launch {
+            _portfolios.value = apiService.getPortfolios("Bearer " + getToken())
+        }
     }
 
 }

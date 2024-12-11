@@ -2,7 +2,9 @@ package com.ivan.myapplication.network
 
 import android.media.session.MediaSession.Token
 import com.ivan.myapplication.model.AuthResponse
+import com.ivan.myapplication.model.Portfolio
 import com.ivan.myapplication.model.Stock
+import com.ivan.myapplication.model.StockHistory
 import com.ivan.myapplication.model.User
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,5 +28,12 @@ interface ApiService {
 
     @GET("api/users/me")
     suspend fun getUser(@Header("Authorization") token: String): User
+
+    @GET("api/transactions/history")
+    suspend fun getHistory(@Header("Authorization") token: String): List<StockHistory>
+
+    @GET("api/portfolios")
+    suspend fun getPortfolios(@Header("Authorization") token: String): List<Portfolio>
+
 
 }

@@ -26,7 +26,7 @@ object AppModule {
     @Singleton
     fun provideApiService(): ApiService {
         return Retrofit.Builder()
-            .baseUrl("https://0784-2a0c-16c0-510-2-00-c9a4.ngrok-free.app")
+            .baseUrl("https://f026-2a0c-16c0-510-2-00-c9a4.ngrok-free.app")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
