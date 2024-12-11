@@ -70,7 +70,6 @@ fun LoginScreen(
 
             onValueChange = { email = it },
             label = { Text("Email") },
-            visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
@@ -91,6 +90,7 @@ fun LoginScreen(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)

@@ -47,7 +47,7 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    //var email by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
     var again_password by remember { mutableStateOf("") }
 
     Column(
@@ -90,10 +90,10 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(23.dp))
 
             OutlinedTextField(
-                value = "",
+                value = phone,
 
-                onValueChange = { },
-                label = { Text(" ") },
+                onValueChange = { phone = it },
+                label = { Text("Номер телефона") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 20.dp, end = 20.dp),
@@ -114,7 +114,8 @@ fun RegisterScreen(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password") },
+                label = { Text("Пароль") },
+                visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 20.dp, end = 20.dp)
@@ -133,10 +134,10 @@ fun RegisterScreen(
 
             Spacer(modifier = Modifier.height(23.dp))
             OutlinedTextField(
-                value = "",
+                value = again_password,
 
-                onValueChange = { },
-                label = { Text("Password again") },
+                onValueChange = { again_password = it },
+                label = { Text("Пароль снова") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
