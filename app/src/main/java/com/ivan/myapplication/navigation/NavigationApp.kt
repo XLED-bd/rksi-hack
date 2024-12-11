@@ -39,7 +39,8 @@ fun NavigationApp(authViewModel: AuthViewModel) {
                 bottomBar = {  BottomNavigationBar(navController, viewModel) }
             ) { innerPadding ->
                 MainScreen(Modifier.padding(innerPadding), viewModel,
-                    onLogout = { authViewModel.logout() })
+                    onLogout = { authViewModel.logout() },
+                    onInvestClick = { navController.navigate(Screen.ListInvestmentsPage.route) })
             }
         }
 

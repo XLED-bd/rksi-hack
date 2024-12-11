@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ivan.myapplication.model.BuyStock
 import com.ivan.myapplication.model.Portfolio
 import com.ivan.myapplication.model.Stock
 import com.ivan.myapplication.model.StockHistory
@@ -41,6 +42,9 @@ class MainViewModel @Inject constructor(
 
     private val _portfolios = MutableStateFlow<List<Portfolio>>(emptyList())
     val portfolios: StateFlow<List<Portfolio>> = _portfolios.asStateFlow()
+
+    private val _balance = MutableStateFlow<Double>(0.0)
+    val balance: StateFlow<Double> = _balance.asStateFlow()
 
 
     companion object {
@@ -86,6 +90,18 @@ class MainViewModel @Inject constructor(
     fun getPortfolios() {
         viewModelScope.launch {
             _portfolios.value = apiService.getPortfolios("Bearer " + getToken())
+        }
+    }
+
+    fun buyStocks(id: String, amount: Int, price: Double){
+        viewModelScope.launch {
+            apiService.buyStocks("Bearer " + getToken(), BuyStock(id, amount, price, "buy"))
+        }
+    }
+
+    fun getBalance(){
+        viewModelScope.launch {
+            _balance.value = apiService.getBalance("Bearer " + getToken()).balance
         }
     }
 

@@ -2,6 +2,9 @@ package com.ivan.myapplication.network
 
 import android.media.session.MediaSession.Token
 import com.ivan.myapplication.model.AuthResponse
+import com.ivan.myapplication.model.Balance
+import com.ivan.myapplication.model.BuyStock
+import com.ivan.myapplication.model.BuyStockAnswer
 import com.ivan.myapplication.model.Portfolio
 import com.ivan.myapplication.model.Stock
 import com.ivan.myapplication.model.StockHistory
@@ -36,4 +39,10 @@ interface ApiService {
     suspend fun getPortfolios(@Header("Authorization") token: String): List<Portfolio>
 
 
+    @POST("api/transactions/buy")
+    suspend fun buyStocks(@Header("Authorization") token: String, @Body buyDetails: BuyStock): BuyStockAnswer
+
+
+    @GET("api/users/balance")
+    suspend fun getBalance(@Header("Authorization") token: String): Balance
 }

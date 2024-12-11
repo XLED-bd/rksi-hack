@@ -23,6 +23,26 @@ data class StockHistory(
     val created_at: String
 )
 
+data class BuyStock(
+    val stock_id: String,
+    val amount: Int,
+    val price: Double,
+    val type: String
+)
+
+data class Balance(
+    val balance: Double
+)
+
+data class BuyStockAnswer(
+    val id: String,
+    val stock_id: String,
+    val amount: Int,
+    val price: Double,
+    val type: String,
+    val created_at: String
+)
+
 data class Portfolio(
     val portfolio_id: String,
     val stock_name: String,
