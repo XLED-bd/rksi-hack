@@ -147,7 +147,6 @@ fun MainScreen(
             }
         }
 
-        // Дополнительная информация
         Spacer(modifier = Modifier.height(52.dp))
 
         val currencies = listOf(
