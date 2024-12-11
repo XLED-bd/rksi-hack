@@ -47,6 +47,9 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    //var email by remember { mutableStateOf("") }
+    var again_password by remember { mutableStateOf("") }
+
     Column(
         Modifier
             .fillMaxSize()

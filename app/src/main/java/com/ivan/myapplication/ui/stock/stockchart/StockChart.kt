@@ -76,7 +76,7 @@ fun StockChart(
 
 @Composable
 fun RandomStockChart() {
-    val randomPrices = List(20) { (100..200).random().toFloat() }
+    val randomPrices = List(100) { (1..200).random().toFloat() }
 
     Column(
         modifier = Modifier
@@ -87,7 +87,7 @@ fun RandomStockChart() {
             text = "Stock Price Chart",
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF212121), // Тёмно-серый цвет текста
+            color = Color(0xFF060606), // Тёмно-серый цвет текста
             modifier = Modifier.padding(bottom = 12.dp)
         )
 

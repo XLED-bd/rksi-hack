@@ -42,7 +42,12 @@ interface ApiService {
     @POST("api/transactions/buy")
     suspend fun buyStocks(@Header("Authorization") token: String, @Body buyDetails: BuyStock): BuyStockAnswer
 
+    @POST("api/transactions/sell")
+    suspend fun sellStocks(@Header("Authorization") token: String, @Body buyDetails: BuyStock): BuyStockAnswer
 
     @GET("api/users/balance")
     suspend fun getBalance(@Header("Authorization") token: String): Balance
+
+    //@POST("api/portfolios")
+    //suspend fun createPortfolios
 }

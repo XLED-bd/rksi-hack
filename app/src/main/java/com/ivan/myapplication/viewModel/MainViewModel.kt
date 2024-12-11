@@ -95,7 +95,13 @@ class MainViewModel @Inject constructor(
 
     fun buyStock(id: String, amount: Int, price: Double){
         viewModelScope.launch {
-            apiService.buyStocks("Bearer " + getToken(), BuyStock(id, amount, price, "buy"))
+            apiService.buyStocks("Bearer " + getToken(), BuyStock(id, amount, price, "BUY"))
+        }
+    }
+
+    fun sellStock(id: String, amount: Int, price: Double){
+        viewModelScope.launch {
+            apiService.sellStocks("Bearer " + getToken(), BuyStock(id, amount, price, "SELL"))
         }
     }
 

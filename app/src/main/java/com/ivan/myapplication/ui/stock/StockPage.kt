@@ -101,7 +101,7 @@ fun StockPage(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Button(
-                    onClick = { /* Обработчик продажи */ },
+                    onClick = { viewModel.sellStock(stock.id, 1, stock.last_price) },
                     colors = ButtonDefaults.buttonColors(Color.Red),
                     modifier = Modifier.fillMaxWidth()
                 ) {

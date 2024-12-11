@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.ivan.myapplication.model.Stock
 import com.ivan.myapplication.model.StockHistory
 import com.ivan.myapplication.viewModel.MainViewModel
 
@@ -34,7 +33,7 @@ fun History(modifier: Modifier, viewModel: MainViewModel) {
     viewModel.getHistory()
 
     LazyColumn (modifier){
-        items(history){ item ->
+        items(history.reversed()){ item ->
             StockHistoryCard(item)
         }
     }

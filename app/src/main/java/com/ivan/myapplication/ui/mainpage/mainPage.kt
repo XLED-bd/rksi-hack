@@ -151,7 +151,7 @@ fun MainScreen(
 
         val currencies = listOf(
             Currency("CNY", "Юань", "6.50", "6.70"),
-            Currency("USD", "Доллар", "76.30", "76.50"),
+            Currency("USD", "Доллар", "106,25", "106,05"),
             Currency("AED", "Дирхам", "20.30", "20.50"),
             Currency("KZT", "Тенге", "0.15", "0.16")
         )
