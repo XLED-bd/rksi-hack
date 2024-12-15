@@ -7,6 +7,18 @@
 
 Данные о доступных акциях обновляются в режиме реального времени и поступают с бирж через backend. Репозиторий backend доступен по [ссылке](https://github.com/XLED-bd/rksi-hack-back).
 
+---
+
+## Скриншоты
+
+![Image alt](https://github.com/XLED-bd/rksi-hack/blob/master/image/main_page.jpg) ![Image alt](https://github.com/XLED-bd/rksi-hack/blob/master/image/main_page2.jpg)
+
+![Image alt](https://github.com/XLED-bd/rksi-hack/blob/master/image/stocks_page.png)
+
+![Image alt](https://github.com/XLED-bd/rksi-hack/blob/master/image/stock_page.jpg)
+
+---
+
 ## Функциональность
 
 - Просмотр актуальных данных о доступных акциях.
@@ -28,4 +40,4 @@
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/ваш-профиль/название-репозитория.git
+   git clone https://github.com/XLED-bd/rksi-hack.git
